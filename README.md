@@ -9,7 +9,7 @@ Or use the debian package.
 
 ### Usage
 
-Execute ```machinecare``` if you installed the debian package or Just Run the python. Right now it has only 3 functions:
+Execute ```machinecare``` or just run the .py file directly if you want. Right now it has only 3 functions:
 
 - Upgrade the system
 - Remove Unused packages

@@ -1,5 +1,5 @@
 # Machine care
-An simple shell script to take care of simple maintenance tasks for Debian and it's derivatives
+An simple python script to take care of simple maintenance tasks for Debian and it's derivatives
 
 ### Installation
 
@@ -9,7 +9,7 @@ Or use the debian package.
 
 ### Usage
 
-Execute ```machinecare``` if you installed the debian package or Just Run the script. Right now it has only 3 functions:
+Execute ```machinecare``` if you installed the debian package or Just Run the python. Right now it has only 3 functions:
 
 - Upgrade the system
 - Remove Unused packages

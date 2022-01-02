@@ -1,0 +1,52 @@
+#!/bin/bash
+while :
+do
+	clear
+        # display menu
+        echo "Server Name - $(hostname)"
+        echo "Today is $(date)"
+	echo "-------------------------------"
+	echo "         MACHINE - CARE        "
+	echo "-------------------------------"
+	echo "1. Update and upgrade packages  "
+	echo "2. Remove Orphaned packages     "
+	echo "3. Clean Apt cache"
+	echo "4. Exit"
+        # get input from the user 
+	read -p "Enter your choice [ 1 -4 ] " choice
+        # make decision using case..in..esac 
+	case $choice in
+		1)
+			echo "Starting complete upgrade"
+            sudo apt update
+            sudo apt upgrade
+            clear
+            echo "Done."
+			read -p "Press [Enter] key to continue..." readEnterKey
+            clear
+			;;
+		2) 
+			echo "Attention, this is an potentially destructive action"
+            sleep 1
+            sudo apt autoremove 
+            clear
+            echo "Done."
+			read -p "Press [Enter] key to continue..." readEnterKey
+            clear
+			;;
+		3)
+			sudo apt clean
+			read -p "Press [Enter] key to continue..." readEnterKey
+            clear
+			;;
+		4)
+			echo "Farewell."
+			exit 0
+			;;
+		*)
+			echo "Error: Invalid option..."	
+			read -p "Press [Enter] key to continue..." readEnterKey
+			;;
+	esac		
+				
+done

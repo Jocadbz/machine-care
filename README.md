@@ -4,7 +4,8 @@ An simple shell script to take care of simple maintenance tasks for Debian and i
 ### Installation
 
 Just move the script to somewhere in your path, i reccomend ```/usr/local/bin```
-Or use the deb package.
+
+Or use the debian package.
 
 ### Usage
 

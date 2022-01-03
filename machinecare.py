@@ -1,6 +1,7 @@
 # Import system functions
 import os 
 
+# Define each action
 def upgrade_system():
     os.system("clear")
     print("Starting complete upgrade")
@@ -61,9 +62,7 @@ while True:
   for entry in options: 
       print(entry, menu[entry])
 
-# Here we have the system responses to each action
-# This is acctually an fucking big mess,
-# So pay attention to what you are changing here
+# Here we have the system responses to each action 
   selection = input("Please select: ")
   if selection =='1':
       upgrade_system()

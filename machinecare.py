@@ -40,7 +40,8 @@ class Terminal:
     def menushow(self):
         # List all available maintenance options the User can choose, see in "menu" dictionary.
         for choice in self.menu.keys():
-            print(f"[{self.HEADER + choice}] {self.menu[choice]}")
+            optionMenu = f"[{choice}] {self.menu[choice]}"
+            print(self.HEADER + optionMenu)
 
 
 # Define each action
@@ -82,7 +83,6 @@ def exit_function():
 # Start to print menu
 terminal = Terminal()
 terminal.banner()
-terminal.menushow()
 
 while True:
     options_dict = {

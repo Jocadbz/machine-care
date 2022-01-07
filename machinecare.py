@@ -7,6 +7,7 @@ PRESS_ENTER = "Press Enter to continue..."
 
 class Terminal:
 
+    # Colorful terminal and outputs.
     HEADER = '\033[95m'
     SUCCESS_OK = '\033[94m'
     SUCCESS_CYAN = '\033[96m'

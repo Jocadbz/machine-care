@@ -1,83 +1,103 @@
 # Import system functions
-import os 
+import os
+from time import sleep
+
+PRESS_ENTER = "Press Enter to continue..."
+
+
+class Terminal:
+
+    # Colorful terminal and outputs.
+    HEADER = '\033[95m'
+    SUCCESS_OK = '\033[94m'
+    SUCCESS_CYAN = '\033[96m'
+    FAIL = '\033[91m'
+
+    menu = {
+        "1": "Update and upgrade packages",
+        "2": "Remove Orphaned packages",
+        "3": "Clean Apt cache",
+        "4": "Exit"
+    }
+
+    def banner(self):
+
+        os.system("clear")
+
+        os.system("echo Server Name - $(hostname) && echo Today is $(date)")
+
+        startm = """
+                    ####################################################################
+                    #                           MACHINE - CARE                         #
+                    # An simple python script to take care of simple maintenance tasks # 
+                    ####################################################################
+        """
+
+        print(self.SUCCESS_OK + startm)
+
+        sleep(2)
+
+    def menushow(self):
+        # List all available maintenance options the User can choose, see in "menu" dictionary.
+        for choice in self.menu.keys():
+            optionMenu = f"[{choice}] {self.menu[choice]}"
+            print(self.HEADER + optionMenu)
+
 
 # Define each action
 def upgrade_system():
     os.system("clear")
     print("Starting complete upgrade")
     os.system("sudo apt update")
-    os.system("sudo apt upgrade")
+    os.system("sudo apt upgrade && echo Done. && sleep 1")
+    input(PRESS_ENTER)
     os.system("clear")
-    print("Done.")
-    input("Press Enter to continue...")
-    os.system("clear")
-    pass
+
 
 def clear_system_orphanage_package():
     os.system("clear")
     print("Attention, this is an potentially destructive action")
-    os.system("sleep 1")
-    os.system("sudo apt autoremove")
+    os.system("sleep 1 && sudo apt autoremove && Done. && sleep 1")
+    input(PRESS_ENTER)
     os.system("clear")
-    print("Done.")
-    input("Press Enter to continue...")
-    os.system("clear")
-    pass
+
 
 def clear_system_apt_cache():
+    os.system("clear && sudo apt clean && echo Done, cache was cleaned.")
+    input(PRESS_ENTER)
     os.system("clear")
-    os.system("sudo apt clean")
-    print("Done, cache was cleaned.")
-    os.system("clear")
-    input("Press Enter to continue...")
-    os.system("clear")
-    pass
+
 
 def unknown_entry():
-    print("Unknown Option Selected!")
-    os.system("sleep 1")
-    os.system("clear")
-    pass
+    print(Terminal.FAIL + "Unknown Option Selected!")
+    os.system("sleep 1 && clear")
+
 
 def exit_function():
     os.system("clear")
-    print("Farewell.")
-    pass
+    print(Terminal.SUCCESS_CYAN + "Farewell.")
+    exit(0)
+
 
 # Print epic menu layout
 # Start to print menu
-menu = {}
-os.system("clear")
-os.system("echo Server Name - $(hostname)")
-os.system("echo Today is $(date)")
-print ("-------------------------------")
-print ("         MACHINE - CARE        ")
-print ("-------------------------------")
-menu['1']="Update and upgrade packages" 
-menu['2']="Remove Orphaned packages"
-menu['3']="Clean Apt cache"
-menu['4']="Exit"
+terminal = Terminal()
+terminal.banner()
+
 while True:
-  options = menu.keys()
-  for entry in options: 
-      print(entry, menu[entry])
+    options_dict = {
+        "1": upgrade_system, "2": clear_system_orphanage_package,
+        "3": clear_system_apt_cache, "4": exit_function
+    }
 
-# Here we have the system responses to each action 
-  selection = input("Please select: ")
-  if selection =='1':
-      upgrade_system()
-      pass
-  elif selection == '2': 
-      clear_system_orphanage_package()
-      pass
-  elif selection == '3':
-      clear_system_apt_cache()
-      pass
-  elif selection == '4': 
-      exit_function()
-      break
-  else:
-      unknown_entry()
-      pass
+    terminal.menushow()
 
+    selection = input(Terminal.HEADER + "Please select: ")
 
+    # Formatting the input so if the user sends "1  ", it will understand as "1", removing all its whitespaces.
+    selection = selection.replace(" ", "")
+
+    if selection in options_dict.keys():
+        options_dict[selection]()
+    else:
+        unknown_entry()

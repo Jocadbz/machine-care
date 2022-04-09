@@ -29,7 +29,7 @@ class Terminal:
         startm = """
                     ####################################################################
                     #                           MACHINE - CARE                         #
-                    # An simple python script to take care of simple maintenance tasks # 
+                    # A simple python script to take care of simple maintenance tasks # 
                     ####################################################################
         """
 
@@ -56,7 +56,7 @@ def upgrade_system():
 
 def clear_system_orphanage_package():
     os.system("clear")
-    print("Attention, this is an potentially destructive action")
+    print("Attention, this is a potentially destructive action")
     os.system("sleep 1 && sudo apt autoremove && Done. && sleep 1")
     input(PRESS_ENTER)
     os.system("clear")

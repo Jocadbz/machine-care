@@ -1,3 +1,7 @@
+# PROJECT MOVED TO GITLAB
+https://gitlab.com/Jocadbz/machine-care
+
+
 # Machine care
 An simple python script to take care of simple maintenance tasks for Debian and it's derivatives
 
